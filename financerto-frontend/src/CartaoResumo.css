@@ -1,0 +1,11 @@
+.cartao-resumo{
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    padding: 16px;
+    flex: 1;
+}
+
+.resumo-financeiro{
+    display: flex;
+    gap: 16px;
+}
