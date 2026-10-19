@@ -195,3 +195,16 @@
   margin-top: 16px;
   flex-wrap: wrap;
 }
+
+.acoes-financeiras button{
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #2563eb;
+color: white;
+}
+
+.acoes-financeiras button:hover{
+  background-color: #1d4ed8;
+}
