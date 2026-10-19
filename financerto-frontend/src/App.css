@@ -188,3 +188,10 @@
     flex-direction: column;
   }
 }
+
+.acoes-financeiras{
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}

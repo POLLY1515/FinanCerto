@@ -20,11 +20,7 @@ function App() {
             maximumFractionDigits: 2,
           })}`}
         />
-        <button
-          onClick={() => setReceitas((valorAnterior) => valorAnterior + 500)}
-        >
-          Adicionar receita de R$ 500,00
-        </button>
+
         <CartaoResumo
           titulo="Despesas"
           valor={`R$ ${despesas.toLocaleString("pt-BR", {
@@ -32,11 +28,6 @@ function App() {
             maximumFractionDigits: 2,
           })}`}
         />
-        <button
-          onClick={() => setDespesas((valorAnterior) => valorAnterior + 100)}
-        >
-          Adicionar despesa de R$ 100,00
-        </button>
         <CartaoResumo
           titulo="Saldo"
           valor={`R$ ${saldo.toLocaleString("pt-BR", {
@@ -44,8 +35,21 @@ function App() {
             maximumFractionDigits: 2,
           })}`}
         />
-        <Contador />
       </div>
+      <div className="acoes-financeiras">
+        <button
+          onClick={() => setReceitas((valorAnterior) => valorAnterior + 500)}
+        >
+          Adicionar receita de R$ 500,00
+        </button>
+        <button
+          onClick={() => setDespesas((valorAnterior) => valorAnterior + 100)}
+        >
+          Adicionar despesa de R$ 100,00
+        </button>
+      </div>
+
+      <Contador />
     </main>
   );
 }
