@@ -6,6 +6,8 @@ import { useState } from "react";
 function App() {
   const [despesas, setDespesas] = useState(850);
   const [receitas, setReceitas] = useState(3000);
+  const [valorReceita, setValorReceita] = useState("");
+  const [valorDespesa, setValorDespesa] = useState("");
   const saldo = receitas - despesas;
 
   return (
@@ -37,15 +39,40 @@ function App() {
         />
       </div>
       <div className="acoes-financeiras">
+        <input
+          type="number"
+          placeholder="Valor da receita"
+          value={valorReceita}
+          onChange={(evento) => setValorReceita(evento.target.value)}
+        />
         <button
-          onClick={() => setReceitas((valorAnterior) => valorAnterior + 500)}
+          onClick={() => {
+            const valor = Number(valorReceita);
+
+            if (valor > 0) {
+              setReceitas((valorAnterior) => valorAnterior + valor);
+              setValorReceita("");
+            }
+          }}
         >
-          Adicionar receita de R$ 500,00
+          Adicionar receita
         </button>
+        <input 
+        type="number"
+        placeholder="valor da despesa"
+        value={valorDespesa}
+        onChange={(evento) => setValorDespesa(evento.target.value)} 
+        />
         <button
-          onClick={() => setDespesas((valorAnterior) => valorAnterior + 100)}
+          onClick={() => {
+            const valor = Number(valorDespesa);
+            if(valor > 0){
+              setDespesas((valorAnterior) => valorAnterior + valor);
+              setValorDespesa("");
+            }
+          }}
         >
-          Adicionar despesa de R$ 100,00
+          Adicionar despesa 
         </button>
       </div>
 
