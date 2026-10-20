@@ -196,20 +196,62 @@
   flex-wrap: wrap;
 }
 
-.acoes-financeiras button{
+.acoes-financeiras button {
   padding: 10px 16px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   background-color: #2563eb;
-color: white;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
 }
 
-.acoes-financeiras button:hover{
+.acoes-financeiras button:hover {
   background-color: #1d4ed8;
 }
 .mensagem-validacao{
   color: #dc2626;
   font-size: 14px;
   margin-top: 8px;
+}
+
+.grupo-financeiro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  flex: 1;
+  min-width: 250px;
+}
+
+.grupo-financeiro ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.grupo-financeiro {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.grupo-financeiro input {
+  width: 100%;
+  max-width: 280px;
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+.grupo-receitas{
+    border-top: 4px solid #16a34a;
+
+}
+.grupo-despesas {
+  border-top: 4px solid #dc2626;
 }
