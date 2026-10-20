@@ -9,6 +9,8 @@ function App() {
   const [valorReceita, setValorReceita] = useState("");
   const [valorDespesa, setValorDespesa] = useState("");
   const [mensagem, setMensagem] = useState("");
+  const [listaReceitas, setListaReceita] = useState([]);
+  const [listaDespesas, setListaDespesa] = useState([]);
 
   const saldo = receitas - despesas;
 
@@ -53,15 +55,27 @@ function App() {
 
             if (valorReceita.trim() !== "" && valor > 0) {
               setReceitas((valorAnterior) => valorAnterior + valor);
+              setListaReceita((listaAnterior) => [...listaAnterior, valor]);
               setValorReceita("");
               setMensagem("");
-             }else{
-              setMensagem("Informe um valor da receita maior que zero.")
-             }
+            } else {
+              setMensagem("Informe um valor da receita maior que zero.");
+            }
           }}
         >
           Adicionar receita
         </button>
+        <ul>
+          {listaReceitas.map((receita, indice) => (
+            <li key={indice}>
+              Receita: R${" "}
+              {receita.toLocaleString("pt-BR", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })}
+            </li>
+          ))}
+        </ul>
         <input
           type="number"
           placeholder="valor da despesa"
@@ -73,13 +87,28 @@ function App() {
             const valor = Number(valorDespesa);
             if (valorDespesa.trim() !== "" && valor > 0) {
               setDespesas((valorAnterior) => valorAnterior + valor);
+              setListaDespesa((valorAnterior) => [...valorAnterior, valor]);
               setValorDespesa("");
+              setMensagem("");
+            }else{
+              setMensagem("Informe um valor de despesa maior que zero.");
             }
           }}
         >
           Adicionar despesa
         </button>
-        {mensagem&& <p  className="mensagem-validacao" >{mensagem}</p>}
+         <ul>
+          {listaDespesas.map((despesa, indice) => (
+            <li key={indice}>
+              Despesa: R${" "}
+              {despesa.toLocaleString("pt-BR", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })}
+            </li>
+          ))}
+        </ul>
+        {mensagem && <p className="mensagem-validacao">{mensagem}</p>}
       </div>
 
       <Contador />
