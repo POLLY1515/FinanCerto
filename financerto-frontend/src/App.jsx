@@ -8,6 +8,8 @@ function App() {
   const [receitas, setReceitas] = useState(3000);
   const [valorReceita, setValorReceita] = useState("");
   const [valorDespesa, setValorDespesa] = useState("");
+  const [mensagem, setMensagem] = useState("");
+
   const saldo = receitas - despesas;
 
   return (
@@ -49,31 +51,35 @@ function App() {
           onClick={() => {
             const valor = Number(valorReceita);
 
-            if (valor > 0) {
+            if (valorReceita.trim() !== "" && valor > 0) {
               setReceitas((valorAnterior) => valorAnterior + valor);
               setValorReceita("");
-            }
+              setMensagem("");
+             }else{
+              setMensagem("Informe um valor da receita maior que zero.")
+             }
           }}
         >
           Adicionar receita
         </button>
-        <input 
-        type="number"
-        placeholder="valor da despesa"
-        value={valorDespesa}
-        onChange={(evento) => setValorDespesa(evento.target.value)} 
+        <input
+          type="number"
+          placeholder="valor da despesa"
+          value={valorDespesa}
+          onChange={(evento) => setValorDespesa(evento.target.value)}
         />
         <button
           onClick={() => {
             const valor = Number(valorDespesa);
-            if(valor > 0){
+            if (valorDespesa.trim() !== "" && valor > 0) {
               setDespesas((valorAnterior) => valorAnterior + valor);
               setValorDespesa("");
             }
           }}
         >
-          Adicionar despesa 
+          Adicionar despesa
         </button>
+        {mensagem&& <p  className="mensagem-validacao" >{mensagem}</p>}
       </div>
 
       <Contador />

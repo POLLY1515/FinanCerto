@@ -208,3 +208,8 @@ color: white;
 .acoes-financeiras button:hover{
   background-color: #1d4ed8;
 }
+.mensagem-validacao{
+  color: #dc2626;
+  font-size: 14px;
+  margin-top: 8px;
+}
