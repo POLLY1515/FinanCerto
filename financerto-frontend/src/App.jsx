@@ -14,6 +14,28 @@ function App() {
 
   const saldo = receitas - despesas;
 
+  function excluirReceita(id) {
+    const receitaRemovida = listaReceitas.find((receita) => receita.id === id);
+    if (!receitaRemovida) {
+      return;
+    }
+    setListaReceita((listaAnterior) =>
+      listaAnterior.filter((receita) => receita.id !== id),
+    );
+    setReceitas((valorAnterior) => valorAnterior - receitaRemovida.valor);
+  }
+
+  function excluirDespesa(id) {
+    const despesaRemovida = listaDespesas.find((despesa) => despesa.id === id);
+    if (!despesaRemovida) {
+      return;
+    }
+    setListaDespesa((listaDespesas) =>
+      listaDespesas.filter((despesa) => despesa.id !== id),
+    );
+    setDespesas((valorAnterior) => valorAnterior - despesaRemovida.valor);
+  }
+
   return (
     <main>
       <h1>FinanCerto</h1>
@@ -56,7 +78,14 @@ function App() {
 
               if (valorReceita.trim() !== "" && valor > 0) {
                 setReceitas((valorAnterior) => valorAnterior + valor);
-                setListaReceita((listaAnterior) => [...listaAnterior, valor]);
+                setListaReceita((listaAnterior) => [
+                  ...listaAnterior,
+                  {
+                    id: crypto.randomUUID(),
+                    valor: valor,
+                    descricao: "Receita",
+                  },
+                ]);
                 setValorReceita("");
                 setMensagem("");
               } else {
@@ -67,13 +96,16 @@ function App() {
             Adicionar receita
           </button>
           <ul>
-            {listaReceitas.map((receita, indice) => (
-              <li key={indice}>
+            {listaReceitas.map((receita) => (
+              <li key={receita.id}>
                 Receita: R${" "}
-                {receita.toLocaleString("pt-BR", {
+                {receita.valor.toLocaleString("pt-BR", {
                   minimumFractionDigits: 2,
                   maximumFractionDigits: 2,
                 })}
+                <button onClick={() => excluirReceita(receita.id)}>
+                  Excluir
+                </button>
               </li>
             ))}
           </ul>
@@ -91,7 +123,13 @@ function App() {
               const valor = Number(valorDespesa);
               if (valorDespesa.trim() !== "" && valor > 0) {
                 setDespesas((valorAnterior) => valorAnterior + valor);
-                setListaDespesa((valorAnterior) => [...valorAnterior, valor]);
+                setListaDespesa((listaAnterior) => [...listaAnterior, 
+                  {
+                    id: crypto.randomUUID(),
+                    valor: valor,
+                    descricao: "Despesa",
+                  },
+                ]);
                 setValorDespesa("");
                 setMensagem("");
               } else {
@@ -102,13 +140,16 @@ function App() {
             Adicionar despesa
           </button>
           <ul>
-            {listaDespesas.map((despesa, indice) => (
-              <li key={indice}>
+            {listaDespesas.map((despesa) => (
+              <li key={despesa.id}>
                 Despesa: R${" "}
-                {despesa.toLocaleString("pt-BR", {
+                {despesa.valor.toLocaleString("pt-BR", {
                   minimumFractionDigits: 2,
                   maximumFractionDigits: 2,
                 })}
+                <button onClick={() => excluirDespesa(despesa.id)}>
+                  Excluir
+                </button>
               </li>
             ))}
           </ul>
