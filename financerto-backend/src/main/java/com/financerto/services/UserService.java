@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import com.financerto.dto.UserRequestDto;
 import com.financerto.dto.UserResponseDto;
 import com.financerto.entities.User;
+import com.financerto.exceptions.EmailAlreadyExistsException;
 import com.financerto.mapper.UserMapper;
 import com.financerto.repositories.UserRepository;
 
@@ -20,7 +21,7 @@ public class UserService {
 	public UserResponseDto register(UserRequestDto dto) {
 		User user = userMapper.toEntity(dto);
 		if (userRepository.existsByEmail(dto.email())) {
-			throw new RuntimeException("Usuário já cadastrado!");
+			throw new EmailAlreadyExistsException("Este e-mail já esta cadastrado!");
 		}
 		User userSalvo = userRepository.save(user);
 		return userMapper.toResponseDto(userSalvo);
